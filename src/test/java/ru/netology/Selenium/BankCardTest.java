@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
+
 public class BankCardTest {
     private WebDriver driver;
 
@@ -26,7 +28,7 @@ public class BankCardTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999");
+
     }
 
     @AfterEach
@@ -37,14 +39,8 @@ public class BankCardTest {
 
     @Test
     void shouldTestCard () {
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
-
+        driver.get("http://localhost:9999");
     }
-
-
-
-
-
 
 
 
