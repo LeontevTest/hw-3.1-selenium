@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class BankCardTest {
@@ -28,6 +29,7 @@ public class BankCardTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999");
 
     }
 
@@ -38,11 +40,15 @@ public class BankCardTest {
     }
 
     @Test
-    void shouldTestCard () {
-        driver.get("http://localhost:9999");
+    void shouldTestCard() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Леонов Александр Владимирович");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79817508998");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+
     }
-
-
 
 
 }
